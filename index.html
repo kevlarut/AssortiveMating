@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Assortive Mating</title>
+	
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+
+</head>
+<body ng-app="smvApp">
+
+	  <script>
+	  angular.module('smvApp', [])
+		.controller('SurveyController', ['$scope', function($scope) {
+			
+			$scope.age = 30;
+			$scope.sex = 'male';
+			
+			$scope.maleSMVByAge = {};
+			$scope.femaleSMVByAge = {}
+			
+			$scope.marketValue = function() {
+			
+				var smv = 0;
+				if ($scope.age >= 18 && $scope.age <= 48) {
+					if ($scope.sex == 'male') {					
+						return $scope.maleSMVByAge[$scope.age];
+					}
+					else if ($scope.sex == 'female') {
+						return $scope.femaleSMVByAge[$scope.age];
+					}
+				}
+				
+				return smv;				
+			};
+						
+			$scope.loadData = function() {
+			
+				// http://blog.okcupid.com/index.php/page/12/
+				// The Case For An Older Woman, Feb. 16, 2010, Christian Rudder
+				$scope.femaleSMVByAge['18'] = 58;
+				$scope.femaleSMVByAge['19'] = 65;
+				$scope.femaleSMVByAge['20'] = 73;
+				$scope.femaleSMVByAge['21'] = 79;
+				$scope.femaleSMVByAge['22'] = 79;
+				$scope.femaleSMVByAge['23'] = 77;
+				$scope.femaleSMVByAge['24'] = 76;
+				$scope.femaleSMVByAge['25'] = 74;
+				$scope.femaleSMVByAge['26'] = 68;
+				$scope.femaleSMVByAge['27'] = 61;
+				$scope.femaleSMVByAge['28'] = 58;
+				$scope.femaleSMVByAge['29'] = 53;
+				$scope.femaleSMVByAge['30'] = 50;
+				$scope.femaleSMVByAge['31'] = 40;
+				$scope.femaleSMVByAge['32'] = 38;
+				$scope.femaleSMVByAge['33'] = 35;
+				$scope.femaleSMVByAge['34'] = 33;
+				$scope.femaleSMVByAge['35'] = 30;
+				$scope.femaleSMVByAge['36'] = 25;
+				$scope.femaleSMVByAge['37'] = 22;
+				$scope.femaleSMVByAge['38'] = 32;
+				$scope.femaleSMVByAge['39'] = 18;
+				$scope.femaleSMVByAge['40'] = 18;
+				$scope.femaleSMVByAge['41'] = 13;
+				$scope.femaleSMVByAge['42'] = 13;
+				$scope.femaleSMVByAge['43'] = 12;
+				$scope.femaleSMVByAge['44'] = 11;
+				$scope.femaleSMVByAge['45'] = 9;
+				$scope.femaleSMVByAge['46'] = 7;
+				$scope.femaleSMVByAge['47'] = 7;
+				$scope.femaleSMVByAge['48'] = 6;
+			
+				// http://blog.okcupid.com/index.php/page/12/
+				// The Case For An Older Woman, Feb. 16, 2010, Christian Rudder
+				$scope.maleSMVByAge['18'] = 27;
+				$scope.maleSMVByAge['19'] = 30;
+				$scope.maleSMVByAge['20'] = 37;
+				$scope.maleSMVByAge['21'] = 39;
+				$scope.maleSMVByAge['22'] = 47;
+				$scope.maleSMVByAge['23'] = 57;
+				$scope.maleSMVByAge['24'] = 64;
+				$scope.maleSMVByAge['25'] = 70;
+				$scope.maleSMVByAge['26'] = 70;
+				$scope.maleSMVByAge['27'] = 66;
+				$scope.maleSMVByAge['28'] = 68;
+				$scope.maleSMVByAge['29'] = 64;
+				$scope.maleSMVByAge['30'] = 68;
+				$scope.maleSMVByAge['31'] = 54;
+				$scope.maleSMVByAge['32'] = 53;
+				$scope.maleSMVByAge['33'] = 47;
+				$scope.maleSMVByAge['34'] = 46;
+				$scope.maleSMVByAge['35'] = 45;
+				$scope.maleSMVByAge['36'] = 35;
+				$scope.maleSMVByAge['37'] = 32;
+				$scope.maleSMVByAge['38'] = 31;
+				$scope.maleSMVByAge['39'] = 28;
+				$scope.maleSMVByAge['40'] = 27;
+				$scope.maleSMVByAge['41'] = 20;
+				$scope.maleSMVByAge['42'] = 21;
+				$scope.maleSMVByAge['43'] = 18;
+				$scope.maleSMVByAge['44'] = 17;
+				$scope.maleSMVByAge['45'] = 17;
+				$scope.maleSMVByAge['46'] = 13;
+				$scope.maleSMVByAge['47'] = 12;
+				$scope.maleSMVByAge['48'] = 11;
+			}
+			
+			$scope.loadData();
+		}]);
+	</script>
+
+	<p>This is an adaptive test which will tell you what your value is on the mating market.</p>
+	
+	<form name="myForm" ng-controller="SurveyController">
+		
+		<label>1. What is your sex?</label><br />
+		<input type="radio" ng-model="sex" value="male" /> Male <br/>
+		<input type="radio" ng-model="sex" value="female" /> Female <br/>
+		
+		<label>2. What is your age?</label><br />
+		<input type="text" ng-model="age" /><br />
+		
+		<p>Your market value is {{marketValue()}}.  That's the percentage of the eligible opposite sex who might be interested in you.</p>
+		
+	 </form>
+</body>
+</html>
